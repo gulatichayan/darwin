@@ -1,0 +1,32 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<h1>Offline Search Application</h1>
+			<p>This app allows you to search for images from Google Image Search. It will save your search results in Search History tab for offline access. Try searching for a keyword below.</p>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 well">
+			<form name="onlineImageSearchForm" novalidate>
+				<div class="form-group">
+					<label>Keyword:</label>
+					<input class="form-control" type="text" name="searchKeyword" ng-model="searchKeyword" placeholder="Enter your search keyword here..." required>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-success" ng-disabled="onlineImageSearchForm.$invalid" ng-click="searchImageOnline(searchKeyword)">Search</button>
+					<button class="btn btn-danger" ng-click="resetOnlineImageSearchForm()">Reset</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div ng-if="imageSearchResult.items" class="row well">
+		<div class="col-md-12">
+			<span ng-repeat="image in imageSearchResult.items">
+				<img style="margin-left:20px; margin-bottom: 50px; margin-right: 50px" height="200px" width="200px" ng-src="{{image.link}}">
+			</span>
+		</div>
+	</div>
+</div>
